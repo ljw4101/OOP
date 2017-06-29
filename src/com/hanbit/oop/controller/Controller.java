@@ -1,15 +1,19 @@
 package com.hanbit.oop.controller;
 
 import java.util.Scanner;
+
+import com.hanbit.oop.service.BMIService;
 import com.hanbit.oop.service.CalcService;
 import com.hanbit.oop.service.ClockService;
 import com.hanbit.oop.service.EvenSumService;
+import com.hanbit.oop.service.GradeService;
 import com.hanbit.oop.service.LeapYearService;
 import com.hanbit.oop.service.LoginService;
 import com.hanbit.oop.service.NumberSortService;
 import com.hanbit.oop.service.OddSumService;
 import com.hanbit.oop.service.SSNService;
 import com.hanbit.oop.service.SigmaService;
+import com.hanbit.oop.service.TaxCalService;
 
 public class Controller {
 	public static void main(String[] args) {
@@ -24,13 +28,20 @@ public class Controller {
 		SSNService ssnServ = new SSNService();
 		SigmaService sigma = new SigmaService();
 		
+		//은닉화된 클레스
+		GradeService grade = new GradeService();
+		BMIService bmi = new BMIService();
+		TaxCalService tax = new TaxCalService();
+		
 		String result = "";
 		String[] resultArr;
 		int resultInt = 0;
 			
  		while (true) {
  			System.out.println("0.Stop, 1.BMI, 2.Clock, 3.LeapYear, 4.NumberSort, 5.Login, \n"
- 					+ "6.SSN, 7.EvenSum, 8.OddSum, 9.Sigma, 10.Plus 11.Minus 12.Multi 13.Divid");
+ 					+ "6.SSN, 7.EvenSum, 8.OddSum, 9.Sigma, 10.Plus 11.Minus 12.Multi 13.Divid, \n"
+ 					+ "14.Grade 15.Tax");
+ 			
 			switch (s.nextInt()) {
 				case 0:
 					System.out.println("stop");
@@ -39,14 +50,16 @@ public class Controller {
 				case 1:
 					System.out.print("나의 체질량지수(BMI)는?\n");
 					System.out.print("신장(cm): ");
-					double height = s.nextDouble();			
+					double height = s.nextDouble();		
+					bmi.setHeight(height);
 					System.out.print("몸무게(kg): ");
 					double weight = s.nextDouble();
-		
-					result = serv.calcBMI(height, weight);
-					System.out.print(String.format("나의 체질량지수(BMI): %s \n", result));
+					bmi.setWeight(weight);
+					bmi.setCalbmi();
+					bmi.setBMI();
+					System.out.print(String.format("나의 체질량지수(BMI): %s \n", bmi.getBMI()));
 					break;
-				
+					
 				case 2:
 					System.out.print("초를 입력하세요: ");
 					int sec = s.nextInt();
@@ -159,6 +172,42 @@ public class Controller {
 					
 					result = serv.calcDivid(divnum1, divnum2); 
 					System.out.print("결과: "+result+"\n");
+					break;
+				//연산자 없이 객체만으로 연산	
+				case 14:
+					System.out.print("이름: ");
+					String gname = s.next();	
+					grade.setName(gname);
+					System.out.print("전공: ");
+					String major = s.next();	
+					grade.setMajor(major);
+					System.out.print("국어점수: ");
+					int kor = s.nextInt();	
+					grade.setKor(kor); //임시로 저장
+					System.out.print("영어점수: ");
+					int eng = s.nextInt();		
+					grade.setEng(eng);
+					System.out.print("수학점수: ");
+					int math = s.nextInt();		
+					grade.setMath(math);
+					grade.setGrade();
+					System.out.println(grade.toString());
+					break;
+				case 15:
+					System.out.print("이름: ");
+					String tname = s.next();
+					tax.setName(tname);
+					System.out.print("연봉: ");
+					int salary = s.nextInt();
+					tax.setSalary(salary);
+					tax.setRate();
+					tax.setTax();
+					System.out.print("*****************************************\n");
+					System.out.print("이름\t| 연봉 \t| 세율 \t| 납부할세금\n");
+					System.out.print("-----------------------------------------\n");
+					System.out.print(String.format("%s\t| %d만원 | %d%%\t| %d만원\n",
+							tax.getName(), tax.getSalary(), tax.getRate(), tax.getTax()));
+					System.out.print("*****************************************\n");
 					break;
 			}
 		}

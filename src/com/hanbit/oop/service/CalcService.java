@@ -37,6 +37,4 @@ public class CalcService {
 	public String calcDivid(String a, String b){
 		return String.valueOf(Integer.parseInt(a)/Integer.parseInt(b));
 	}
-	
-	//public String calcTax(){}
 }
