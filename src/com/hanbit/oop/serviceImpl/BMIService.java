@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class BMIService {
 	private double height, weight, calbmi;

@@ -28,9 +28,10 @@ public class MemberBean {
 	public String getName(){
 		return name;
 	}
-	
+
 	public String toString(){
-		//return "Welcome "+name+"("+gender+", "+age+"세)";
-		return "Welcome "+id;
+		return String.format("%s %s %s %s", id, pw, name, ssn);
+		//return "Welcome "+id;
 	}
+	
 }

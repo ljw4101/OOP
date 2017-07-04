@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class CalendarService {
 	//fleid에선 값을 할당하지 않는다.

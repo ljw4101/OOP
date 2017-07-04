@@ -5,12 +5,13 @@ import javax.swing.*;
 
 import com.hanbit.oop.domain.GradeBean;
 import com.hanbit.oop.service.GradeService;
+import com.hanbit.oop.serviceImpl.GradeServiceImpl;
 
 public class GradeController {
 	public static void main(String[] args) {
 
 		GradeBean bean = new GradeBean();
-		GradeService serv = new GradeService();
+		GradeService serv = new GradeServiceImpl();
 				
  		while (true) {
 			switch (JOptionPane.showInputDialog("0.Stop, 1.Grade")) {

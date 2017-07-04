@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class NumberSortService {
 	public String[] execute(int a, int b, int c){
