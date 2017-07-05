@@ -6,6 +6,7 @@ public interface AdminService {
 	//setter
 	public void addMember(MemberBean member);
 	public void upadtePw(MemberBean member);
+	public void delMember(String id);
 	//getter
 	public MemberBean[] getMembers();	//목록: MemberBean을 배열로 담음
 	public int countMembers();

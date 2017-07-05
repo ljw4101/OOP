@@ -14,7 +14,7 @@ public class AdminController {
 		String sList = "";
 		
 		while(true){
-			switch(JOptionPane.showInputDialog("0.Stop, 1.Add  2.Count 3.List 4.FindById 5.findByName 6.Update")){
+			switch(JOptionPane.showInputDialog("0.Stop, 1.Add  2.Count 3.List 4.FindById 5.findByName 6.Update 7.Delete")){
 				case "0":
 					JOptionPane.showMessageDialog(null, "Stop");
 					return;
@@ -35,8 +35,9 @@ public class AdminController {
 				case "3":
 					MemberBean[] list = service.getMembers();
 					sList = "";
+					int listCont = service.countMembers();
 					
-					for(int i=0; i<list.length; i++){
+					for(int i=0; i<listCont; i++){
 						 sList += list[i].toString()+"\n";
 					}
 					JOptionPane.showMessageDialog(null, "리스트\n"+sList);
@@ -55,12 +56,19 @@ public class AdminController {
 					JOptionPane.showMessageDialog(null, "리스트\n"+sList);
 					break;
 				case "6": 
-					MemberBean bean = new MemberBean();
-					bean.setId(JOptionPane.showInputDialog("Id를 입력하세요"));
-					bean.setPw(JOptionPane.showInputDialog("변경할 비빌번호를 입력하세요"));
-					service.upadtePw(bean);
+					member = new MemberBean();
+					String[] updateArr = JOptionPane.showInputDialog("Id/Pw").split("/"); 
+					member.setId(updateArr[0]);
+					member.setPw(updateArr[1]);
+					service.upadtePw(member);
 				
 					JOptionPane.showMessageDialog(null, "비밀번호 변경 완료");
+					break;
+				case "7":
+					String id = JOptionPane.showInputDialog("삭제할 ID를 입력하세요");
+					service.delMember(id);
+					
+					JOptionPane.showMessageDialog(null, "회원 삭제 완료");
 					break;
 			}
 		}
