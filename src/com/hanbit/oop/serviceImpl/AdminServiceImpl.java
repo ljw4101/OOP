@@ -17,11 +17,8 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Override
 	public void addMember(MemberBean member) {		
-		//list[count] = member;
-		//count++;
-		setCount();
-		list[getCount()-1]=member;
-		
+		list[count] = member;
+		count++;
 	}
 
 	@Override
@@ -34,16 +31,6 @@ public class AdminServiceImpl implements AdminService{
 		return count;
 	}
 	
-	public void setCount(){
-		count++;
-	}
-	
-	public int getCount(){
-		if(count>list.length){
-			count=list.length;
-		}
-		return count;
-	}
 
 	@Override
 	public MemberBean findByID(String id) {
